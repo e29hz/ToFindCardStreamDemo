@@ -22,6 +22,11 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIImageView *headerImageView;
+
+@property (nonatomic, assign) BOOL scaled;
+@property (nonatomic, assign) CGFloat lastOffsetY;
+
+
 @end
 
 @implementation HZFindCardViewController
@@ -30,26 +35,25 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"TO FIND";
+    self.lastOffsetY = -99999;
     [self setupBaseView];
     UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     tableView.backgroundColor = [UIColor clearColor];
     tableView.showsVerticalScrollIndicator = NO;
-
+    tableView.bounces = NO;
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
     self.tableView = tableView;
 }
 
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-//    self.headerImageView.transform = CGAffineTransformMakeScale(0.8, 0.8);
 
 }
 
@@ -94,29 +98,56 @@
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
                      withVelocity:(CGPoint)velocity
               targetContentOffset:(inout CGPoint *)targetContentOffset {
-    NSLog(@"%f", velocity.y);
+//    NSLog(@"%f", velocity.y);
     if (velocity.y > 0) {
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
-        [UIView animateWithDuration:0.5 animations:^{
-            CGAffineTransform translation = CGAffineTransformMakeTranslation(0, -114);
-            CGAffineTransform scale = CGAffineTransformMakeScale(1.4, 1);
-            self.headerImageView.transform = CGAffineTransformConcat(translation, scale);
-        } completion:^(BOOL finished) {
-            
-        }];
+        [self headerViewUp];
     } else {
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
-        [UIView animateWithDuration:0.5 animations:^{
-            self.headerImageView.transform = CGAffineTransformMakeTranslation(0, 0);
-        } completion:^(BOOL finished) {
-            
-        }];
+        [self headerViewDown];
     }
     
 }
 
-//- scrolldrag
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 
+    CGFloat offsetY = scrollView.contentOffset.y;
+    NSLog(@"%f", offsetY);
+    NSLog(@"             %f", self.lastOffsetY);
+    CGFloat change = offsetY - self.lastOffsetY;
+    if (self.lastOffsetY != -99999) {
+        if (offsetY <= 0) {
+            [self headerViewDown];
+        } else {
+            if (change > 0) {
+                [self headerViewUp];
+                
+            } else {
+                [self headerViewDown];
+            }
+        }
+    }
+    self.lastOffsetY = offsetY;
+    
+}
+
+- (void)headerViewUp {
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [UIView animateWithDuration:0.5 animations:^{
+        CGAffineTransform translation = CGAffineTransformMakeTranslation(0, -114);
+        CGAffineTransform scale = CGAffineTransformMakeScale(1.4, 1.4);
+        self.headerImageView.transform = CGAffineTransformConcat(translation, scale);
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+- (void)headerViewDown {
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.headerImageView.transform = CGAffineTransformMakeTranslation(0, 0);
+    } completion:^(BOOL finished) {
+        
+    }];
+}
 #pragma mark - 私有方法
 - (void)setupBaseView {
     self.view.backgroundColor = [UIColor whiteColor];
