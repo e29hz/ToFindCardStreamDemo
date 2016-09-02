@@ -17,7 +17,18 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TWS-vD-BVz">
                         <rect key="frame" x="28" y="8" width="417" height="191"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gpg-C0-rmG">
+                                <rect key="frame" x="0.0" y="0.0" width="417" height="191"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="gpg-C0-rmG" firstAttribute="centerY" secondItem="TWS-vD-BVz" secondAttribute="centerY" id="13z-J9-ueA"/>
+                            <constraint firstItem="gpg-C0-rmG" firstAttribute="centerX" secondItem="TWS-vD-BVz" secondAttribute="centerX" id="7UV-3A-wYG"/>
+                            <constraint firstItem="gpg-C0-rmG" firstAttribute="height" secondItem="TWS-vD-BVz" secondAttribute="height" id="ejc-lu-w0x"/>
+                            <constraint firstItem="gpg-C0-rmG" firstAttribute="width" secondItem="TWS-vD-BVz" secondAttribute="width" id="jvV-JT-fXU"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <constraints>
@@ -29,6 +40,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="cellView" destination="TWS-vD-BVz" id="1Eb-lJ-LFs"/>
+                <outlet property="coverImageView" destination="gpg-C0-rmG" id="4ld-gs-kJA"/>
             </connections>
             <point key="canvasLocation" x="400.5" y="306.5"/>
         </tableViewCell>

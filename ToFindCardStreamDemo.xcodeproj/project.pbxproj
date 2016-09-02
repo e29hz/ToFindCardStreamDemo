@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E42B624D1D781F2900CC7A02 /* navigationbar_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E42B624C1D781F2900CC7A02 /* navigationbar_back@2x.png */; };
+		E445E6171D795057003E223B /* big_money.png in Resources */ = {isa = PBXBuildFile; fileRef = E445E6161D795057003E223B /* big_money.png */; };
+		E445E61D1D795ED3003E223B /* HZCellAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E445E61C1D795ED3003E223B /* HZCellAlertView.m */; };
+		E445E61F1D795EE7003E223B /* HZCellAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E445E61E1D795EE7003E223B /* HZCellAlertView.xib */; };
 		E4921B801D77CCD700227580 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E4921B7F1D77CCD700227580 /* main.m */; };
 		E4921B831D77CCD700227580 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4921B821D77CCD700227580 /* AppDelegate.m */; };
 		E4921B8B1D77CCD700227580 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4921B8A1D77CCD700227580 /* Assets.xcassets */; };
@@ -28,6 +31,10 @@
 
 /* Begin PBXFileReference section */
 		E42B624C1D781F2900CC7A02 /* navigationbar_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar_back@2x.png"; sourceTree = "<group>"; };
+		E445E6161D795057003E223B /* big_money.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = big_money.png; sourceTree = "<group>"; };
+		E445E61B1D795ED3003E223B /* HZCellAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZCellAlertView.h; sourceTree = "<group>"; };
+		E445E61C1D795ED3003E223B /* HZCellAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZCellAlertView.m; sourceTree = "<group>"; };
+		E445E61E1D795EE7003E223B /* HZCellAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZCellAlertView.xib; sourceTree = "<group>"; };
 		E4921B7B1D77CCD700227580 /* ToFindCardStreamDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToFindCardStreamDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4921B7F1D77CCD700227580 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E4921B811D77CCD700227580 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -124,6 +131,7 @@
 		E4921B971D77CE8700227580 /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				E445E6161D795057003E223B /* big_money.png */,
 				E42B624C1D781F2900CC7A02 /* navigationbar_back@2x.png */,
 				E4921B981D77CE8700227580 /* e29hz.png */,
 				E4921BB41D77FCE000227580 /* IMG_1935.png */,
@@ -152,6 +160,9 @@
 				E4921BB61D780E7F00227580 /* HZFindCardTableViewCell.h */,
 				E4921BB71D780E7F00227580 /* HZFindCardTableViewCell.m */,
 				E4921BB91D780EC900227580 /* HZFindCardTableViewCell.xib */,
+				E445E61B1D795ED3003E223B /* HZCellAlertView.h */,
+				E445E61C1D795ED3003E223B /* HZCellAlertView.m */,
+				E445E61E1D795EE7003E223B /* HZCellAlertView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -216,10 +227,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4921BA51D77CE8700227580 /* IMG_2615.png in Resources */,
+				E445E61F1D795EE7003E223B /* HZCellAlertView.xib in Resources */,
 				E4921BB51D77FCE000227580 /* IMG_1935.png in Resources */,
 				E4921BA71D77CE8700227580 /* IMG_2619.png in Resources */,
 				E4921B8E1D77CCD700227580 /* LaunchScreen.storyboard in Resources */,
 				E4921BA31D77CE8700227580 /* e29hz.png in Resources */,
+				E445E6171D795057003E223B /* big_money.png in Resources */,
 				E4921BA41D77CE8700227580 /* IMG_2612.png in Resources */,
 				E4921BA61D77CE8700227580 /* IMG_2618.png in Resources */,
 				E42B624D1D781F2900CC7A02 /* navigationbar_back@2x.png in Resources */,
@@ -238,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4921BAA1D77CE8700227580 /* UIView+Extension.m in Sources */,
+				E445E61D1D795ED3003E223B /* HZCellAlertView.m in Sources */,
 				E4921BAD1D77CED300227580 /* HZFindCardViewController.m in Sources */,
 				E4921B831D77CCD700227580 /* AppDelegate.m in Sources */,
 				E4921BB81D780E7F00227580 /* HZFindCardTableViewCell.m in Sources */,
@@ -348,7 +362,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ToFindCardStreamDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.e29hz.ToFindCardDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -363,7 +377,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ToFindCardStreamDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.e29hz.ToFindCardDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

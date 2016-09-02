@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) IBOutlet UIView *cellView;
 
+@property (nonatomic, strong) IBOutlet UIImageView *coverImageView;
+
 @end
