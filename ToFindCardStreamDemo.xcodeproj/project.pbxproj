@@ -182,6 +182,7 @@
 		E4921B731D77CCD700227580 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = HZ;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = e29hz;
 				TargetAttributes = {
@@ -347,7 +348,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ToFindCardStreamDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.e29hz.ToFindCardDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -362,7 +363,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ToFindCardStreamDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.e29hz.ToFindCardDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

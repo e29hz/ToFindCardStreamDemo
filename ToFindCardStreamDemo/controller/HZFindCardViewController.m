@@ -21,9 +21,10 @@
 >
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIButton *maskButton;
 @property (nonatomic, strong) UIImageView *headerImageView;
+@property (nonatomic, strong) UIView *alertView;
 
-@property (nonatomic, assign) BOOL scaled;
 @property (nonatomic, assign) CGFloat lastOffsetY;
 
 
@@ -45,6 +46,30 @@
     tableView.dataSource = self;
     [self.view addSubview:tableView];
     self.tableView = tableView;
+    
+    UIButton *maskButton = [[UIButton alloc] initWithFrame:self.view.bounds];
+    maskButton.backgroundColor = [UIColor lightGrayColor];
+    maskButton.hidden = YES;
+    [maskButton addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:maskButton];
+    self.maskButton = maskButton;
+    
+    UIView *alertView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 400)];
+    alertView.backgroundColor = [UIColor redColor];
+    alertView.hidden = YES;
+    [self.view addSubview:alertView];
+    self.alertView = alertView;
+}
+
+- (void)close {
+    [UIView animateWithDuration:0.5 animations:^{
+        self.maskButton.alpha = 0;
+        self.alertView.transform = CGAffineTransformMakeScale(0.8, 0.00000001);
+    } completion:^(BOOL finished) {
+        self.maskButton.hidden = YES;
+        self.alertView.hidden = YES;
+    }];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -93,16 +118,29 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    HZFindCardTableViewCell *cell = (HZFindCardTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    self.maskButton.hidden = NO;
+    self.maskButton.alpha = 0;
+    self.alertView.hidden = NO;
+    CGPoint point = CGPointMake(cell.center.x, cell.center.y - tableView.contentOffset.y);
+    self.alertView.center = point;
+    self.alertView.transform = CGAffineTransformMakeScale(0.8, 0);
+    [UIView animateWithDuration:0.5 animations:^{
+        self.maskButton.alpha = 0.5;
+        self.alertView.transform = CGAffineTransformMakeScale(1, 1);
+    }];
+}
+
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
                      withVelocity:(CGPoint)velocity
               targetContentOffset:(inout CGPoint *)targetContentOffset {
-//    NSLog(@"%f", velocity.y);
     if (velocity.y > 0) {
         [self headerViewUp];
-    } else {
-        [self headerViewDown];
     }
     
 }
@@ -111,16 +149,12 @@
 
     CGFloat offsetY = scrollView.contentOffset.y;
     NSLog(@"%f", offsetY);
-    NSLog(@"             %f", self.lastOffsetY);
     CGFloat change = offsetY - self.lastOffsetY;
     if (self.lastOffsetY != -99999) {
-        if (offsetY <= 0) {
-            [self headerViewDown];
+        if (change > 0) {
+            [self headerViewUp];
         } else {
-            if (change > 0) {
-                [self headerViewUp];
-                
-            } else {
+            if (offsetY < 254 && offsetY >= 0) {
                 [self headerViewDown];
             }
         }
@@ -135,18 +169,14 @@
         CGAffineTransform translation = CGAffineTransformMakeTranslation(0, -114);
         CGAffineTransform scale = CGAffineTransformMakeScale(1.4, 1.4);
         self.headerImageView.transform = CGAffineTransformConcat(translation, scale);
-    } completion:^(BOOL finished) {
-        
-    }];
+    } completion:nil];
 }
 
 - (void)headerViewDown {
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [UIView animateWithDuration:0.5 animations:^{
         self.headerImageView.transform = CGAffineTransformMakeTranslation(0, 0);
-    } completion:^(BOOL finished) {
-        
-    }];
+    } completion:nil];
 }
 #pragma mark - 私有方法
 - (void)setupBaseView {
@@ -186,11 +216,6 @@
     }
     return nil;
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    [self.navigationController setNavigationBarHidden:YES animated:YES];
-}
-
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
